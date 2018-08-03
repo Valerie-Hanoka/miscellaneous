@@ -19,16 +19,13 @@ grad = zeros(size(theta));
 %               You should set J to the cost and grad to the gradient.
 %
 
+h = X * theta;
+reg_J = (lambda * sum(theta(2:end).^2)) / (2*m);
+J = (sum((h - y).^2)/(2*m)) + reg_J;
 
-
-
-
-
-
-
-
-
-
+partial_derivative = ((h-y)' * X) ./ m;
+reg_pd = (lambda/m) .* [0; theta(2:end)]';
+grad = partial_derivative .+ reg_pd;
 
 % =========================================================================
 
